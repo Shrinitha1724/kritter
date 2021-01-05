@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>
+            SM REAL ESTATES
+        </title>
+        <link href="stylesheet/index.css" type="text/css" rel="stylesheet">
+        <script src="javascript/index.js"></script>
+
+    </head>
+    <body>
+        <h1>SM REAL ESTATES</h1>
+        <img class="bg" src="assets/estate.png">
+        <div class="main-class">
+             <h3>Launched in 2020, SM REAL ESTATES is India's No.1 online Property marketplace to buy, sell, and rent residential and commercial properties. Adjudged as the most preferred real estate portal in India by various independent surveys, Magicbricks offers a one-stop destination for all Property needs.</h3>
+        </div>
+    <div class="estate-container">
+        <a><img src="assets/estate1.png" alt="no image"></a>
+        <img src="assets/estate2.png" alt="no image">
+        <img src="assets/estate3.png" alt="no image">
+        <img src="assets/estate2.png" alt="no image">
+        <img src="assets/estate3.png" alt="no image">
+        <img src="assets/estate1.png" alt="no image">
+
+    <div class="container">
+        <form action="#">
+            <div class="heading-class">
+                ADD ESTATE DETAILS
+            </div>
+            
+          <div class="row">
+            <div class="col-25">
+              <label for="estate_name">Name</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="estate_name" name="estate_name" placeholder="Estate name .." required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="estate_length">Length</label>
+            </div>
+            <div class="col-75">
+              <input type="number" min=10 id="estate_length" name="estate_length" placeholder="Length .." required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="estate_breadth">Breadth</label>
+            </div>
+            <div class="col-75">
+              <input type="number" min=10 id="estate_breadth" name="estate_breadth" placeholder="Breadth .. " required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="cost_per_feet">Cost Per Feet</label>
+            </div>
+            <div class="col-75">
+              <input type="number" min=10 id="cost_per_feet" name="cost_per_feet" placeholder="Cost per feet .. " required>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="estate_type">Type</label>
+            </div>
+            <div class="col-75">
+              <select id="estate_type" name="estate_type">
+                <option value="villa">Villa</option>
+                <option value="apartment">Apartment</option>
+                <option value="flat">Flat</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="description">Description</label>
+            </div>
+            <div class="col-75">
+              <textarea id="description" name="description" placeholder="Write description.." style="height:200px"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <input type="submit" value="Submit" onclick="validateFn()">
+          </div>
+        </form>
+      </div>
+    </body>
+</html>

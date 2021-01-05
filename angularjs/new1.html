@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".some-class").on({
+            mouseenter: function(){
+              $(this).css("color", "gray");
+            },
+            mouseleave: function(){
+              $(this).css("color", "blue");
+            },
+            click: function(){
+              $(this).css("color", "red");
+            },
+            dblclick: function(){
+                $("#fid").toggle(3000);
+            }
+          });
+        });
+</script>
+<style>
+    input.ng-invalid {
+        background-color: lightblue;
+    }
+    table, th , td  {
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 5px;
+      }
+      table tr:nth-child(odd) {
+        background-color: #f1f1f1;
+      }
+      table tr:nth-child(even) {
+        background-color: #ffffff;
+      }
+</style>
+<body>
+
+<div ng-app="myApp" ng-init="author='Shrini';languages=['Java','Javascript','C','Html']" 
+ng-controller="myCtrl" >
+ 
+<p class="some-class">Author Name: <span ng-bind="author"></span></p>
+<p>Name : <input type="text" ng-model="name" placeholder="Enter name here"></p>
+<p>Color : <input type="text" ng-model="myColor" placeholder="Enter color here"></p>
+<form ng-controller="myCtrl1" ng-app="" name="myForm">
+  Name: {{$parent.name}}  {{name}}<br>
+
+    Email:
+    <input type="email" name="myAddress" ng-model="text" required>
+    <span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
+</form>
+<p>Language : <select ng-model="selectedLanguage" ng-options="x for x in languages"></select></p>
+<p id="fid">Founder : <select ng-model="selectedLang">
+    <option ng-repeat="x in la" value="{{x.founder}}">{{x.founder}}</option>
+    </select>
+    
+</p>
+<h2 ng-show="true">{{theTime}}</h2>
+<h2 style="color: {{myColor}};">Hello {{name | uppercase}}</h2>
+
+<h2 ng-hide="false">Languages: </h2>
+<ul>
+    <li ng-repeat='x in languages'>
+        {{x}}
+    </li>
+</ul>
+<h2  ng-mousemove="count = count + 1" ng-mouseleave="count = 0" ng-click="count = count + 100">Languages & Founders: {{ count }} </h2>
+<ul>
+    <li ng-repeat="y in la | orderBy:'founder'">
+      {{ y.name + ' , ' + y.founder }}
+    </li>
+  </ul>
+
+  <h2 ng-click="myFunc()">Filters: </h2>
+  <table ng-show="showMe">
+    <tr ng-repeat="x in la | filter : 'i'">
+        <td>{{ $index + 1 }}</td>
+        <td>{{x.name}}</td>
+        <td>{{x.founder}}</td>
+    </tr>
+  </table>
+
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope,$timeout,$interval) {
+        $scope.name = "Shrinitha";
+
+        $scope.count = 0;
+
+        $scope.showMe = false;
+        $scope.myFunc = function() {
+            $scope.showMe = !$scope.showMe;
+        }
+
+        $timeout(function () {
+            $scope.name = "Shrinitha Monica";
+        }, 3000);
+
+        $scope.theTime = new Date().toLocaleTimeString();
+        $interval(function () {
+            $scope.theTime = new Date().toLocaleTimeString();
+        }, 1000);
+
+        $scope.la=[
+        {name:'C',founder:'Dennis Ritchie'},
+        {name:'Java',founder:'James Gosling'},
+        {name:'Html',founder:'Berners-Lee'},
+        {name:'Javascript',founder:'Brendan Eich'},
+        ];
+    });
+    app.controller('myCtrl1', function($scope) {
+
+      $scope.name = "Shri";
+    }
+    );
+   
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+--> Basic Commands :
+
+1. Check Version
+
+   pig -version
+
+2. Run Pic in local mode
+
+   pig -x local
+
+3. Run pig in cluster mode
+
+   pig
+
+********************************************************************
+
+
+--> Pig Data Models :
+
+1. Tuple 
+ 
+  --> Ordered set of fields
+  --> May contain diffrent data types for each fields
+  --> Example : (1,Nishi,2,Alisha)
+
+2. Bag
+
+  --> Collection of tuples
+  --> These tuples could be subset of the row or entire rows of the table
+  --> Example : {(1,Nishi,2,Alisha),(3,Adnan,4,Nupur)}
+
+3. Map
+
+  --> Key-value pairs used to represent data elements
+  --> Before # -> key
+  --> After  # -> value
+  --> Key can not be duplicate but value can be duplicate.
+  --> id # 1, name # Nishi, city # surat, state # Gujarat
+	
+4. Atom
+
+--> Basic datatypes
+--> Like string, int, float, long, double, char[], byte[]
+
+********************************************************************
+
+--> Pig Operators
+
+1. LOAD : load data from the local file system / HDFS to Pig
+
+2. FOREACH : Generates data transformations based on columns or data
+
+3. FILTER : Selects tuple from a relation based on the condition 
+
+4. JOIN : Joins the relations based on the columns
+
+5. ORDER BY : Sorts the relations based on one or more fileds
+
+6. STORE : Saves the result on the local file system or HDFS
+
+7. DISTINCT : Remove duplicate tuple from the relationship
+
+8. GROUP : Group together a tuple with the same group key
+
+9. COCROUP : It is similar to GROUP. But COGROUP is used when multiple relations re involved
+
+
+*************************************************************************
+
+--> LOAD Command
+
+  student = LOAD 'hdfs://localhost:9000/Pig_Data/Student' USING PigStorage(',') as (id:int, firstname:chararray, lastname:chararray, phone:chararray, city:chararray );
+
+--> Dump Command ( Print Loaded data on the screen )
+
+  dump student;
+
+--> FOREACH Command 
+
+    student_foreach = foreach student generate(firstname,city);
+    
+    dump student_foreach;
+
+--> FILTER Command 
+
+     student_filter = filter student by city == 'Pune';
+
+     dump student_filter;
+
+--> ORDER BY Command
+
+    student_order = order student by id desc;
+
+    dump student_order;
+
+--> STORE Command ( stores generated object to hdfs )
+
+    STORE student_foreach into '/Pig_Data/student_foreach';
+
+
